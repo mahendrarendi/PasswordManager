@@ -11,7 +11,6 @@ build_exe_options = {
     'include_files': [
         ('logo.png', 'logo.png'),
         ('vault.csv', 'vault.csv'),
-        #('/_pycache_', 'pycache'),
         ('get-pip.py', 'get-pip.py')
     ]
 }
