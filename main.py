@@ -11,21 +11,6 @@ PWD_GEN_LETTER = 3
 PWD_GEN_SYMBOL = 3
 PWD_GEN_NUMBER = 3
 
-def login():
-    username = input_username.get()
-    password = input_password.get()
-
-    if username == "" and password == "":
-        login_frame.pack_forget()
-        password_manager_frame.pack()
-        #show_password_manager()
-    else:
-        tkinter.messagebox.showerror("Login Failed", "Invalid username or password")
-
-# Fungsi untuk keluar aplikasi
-def exit_app():
-    window.destroy()
-
 def generate_password():
     pwd = password_generator.generate(PWD_GEN_LETTER, PWD_GEN_SYMBOL, PWD_GEN_NUMBER)
     input_password.delete(0, tkinter.END)
@@ -34,6 +19,11 @@ def generate_password():
     window.clipboard_clear()
     window.clipboard_append(pwd)
     window.update()
+
+# Fungsi untuk keluar aplikasi
+def exit_app():
+    window.destroy()
+
 
 def save():
     website = input_website.get()
@@ -94,23 +84,6 @@ def show_password_manager():
         password_list.insert(tkinter.END, data.to_string(index=False))
 
 
-# Tampilan otentikasi login
-login_frame = tkinter.Frame(window)
-login_frame.pack(pady=10)
-
-label_username = tkinter.Label(login_frame, text="Username")
-label_username.pack()
-input_username = tkinter.Entry(login_frame, width=35)
-input_username.pack()
-
-label_password = tkinter.Label(login_frame, text="Password")
-label_password.pack()
-input_password = tkinter.Entry(login_frame, width=35, show="*")
-input_password.pack(pady=10)
-
-login_button = tkinter.Button(login_frame, text="Login", command=login)
-login_button.pack()
-
 # Tampilan aplikasi Password Manager
 password_manager_frame = tkinter.Frame(window)
 
@@ -152,5 +125,6 @@ password_list_frame = tkinter.Frame(window)
 password_list = tkinter.Text(password_list_frame, height=10, width=80)
 password_list.pack()
 password_list_frame.pack_forget()
+password_manager_frame.pack()
 
 window.mainloop()
